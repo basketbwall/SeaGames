@@ -4,8 +4,10 @@ import { AppComponent } from './app.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { CatalogComponent } from './catalog/catalog.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const routes: Routes = [
+  { path:'', component: HomepageComponent },
   { path: 'aboutus', component: AboutusComponent },
   { path: 'catalog', component: CatalogComponent },
   {path: 'quiz', component: QuizComponent}

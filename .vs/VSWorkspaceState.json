@@ -3,10 +3,8 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\catalog",
-    "\\src\\app\\games",
-    "\\src\\assets\\js"
+    "\\src\\app\\catalog"
   ],
-  "SelectedNode": "\\src\\app\\games\\games.component.html",
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }

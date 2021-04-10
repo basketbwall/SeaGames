@@ -10,9 +10,18 @@ export class GamesComponent implements OnInit {
 
   constructor() {
     this.gamesList = [
-      { name: "League Of Legends", genre: "MOBA" },
-      { name: "CS:GO", genre: "FPS" },
-      {name: "Roblox", genre: "Game creation system, massively multiplayer online"}
+      {
+        name: "League Of Legends",
+        tags: ["MOBA", "Fighter"],
+      },
+      {
+        name: "CS:GO",
+        tags: ["FPS", "Shooter"],
+      },
+      {
+        name: "Roblox",
+        tags: ["MOBA", "Fighter"],
+      }
     ];
   }
 

@@ -3,8 +3,8 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\catalog"
+    "\\src\\app\\aboutus"
   ],
-  "SelectedNode": "\\src\\app\\app.module.ts",
+  "SelectedNode": "\\src\\app\\aboutus\\aboutus.component.html",
   "PreviewInSolutionExplorer": false
 }

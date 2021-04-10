@@ -12,7 +12,12 @@ p {
   margin-bottom: 3px;
 }
 
+.gameImage {
+    margin-left: 25px;
+}
+
 img {
+    float: left;
     width: 310px;
     height: 144px;
 }

@@ -1,7 +1,7 @@
 <p></p>
 <div class="gameDisplay" *ngFor="let game of gamesList">
   <h1>{{game.name}}</h1>
-  <img src="{{game.image}}" />
+  <img class="gameImage" src="{{game.image}}" />
   <p>Devices: {{game.platforms}}</p>
   <p>Tags: {{game.tags}}</p>
   <p class="rating">{{game.rating}}</p>

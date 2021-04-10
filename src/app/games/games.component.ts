@@ -15,14 +15,14 @@ export class GamesComponent implements OnInit {
         name: "League Of Legends",
         platforms: ["PC", "Mobile"],
         tags: ["Competitive Multiplayer"],
-        rating: 5
+        rating: 4
       },
       {
         image: "assets/csgo.jfif",
         name: "CS:GO",
         platforms: "PC",
         tags: ["Competitive Multiplayer"],
-        rating: 4
+        rating: 3
       },
       {
         image: "assets/roblox.jpg",

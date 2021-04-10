@@ -1,2 +1,10 @@
 <p></p>
-<p *ngFor="let game of gamesList"> Name: {{game.name}}, Tags: {{game.tags}}</p>
+<div class="gameDisplay" *ngFor="let game of gamesList">
+  <h1>{{game.name}}</h1>
+  <img src="{{game.image}}" />
+  <p>Devices: {{game.platforms}}</p>
+  <p>Tags: {{game.tags}}</p>
+  <p>{{game.rating}}</p>
+
+</div>
+

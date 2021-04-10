@@ -11,16 +11,25 @@ export class GamesComponent implements OnInit {
   constructor() {
     this.gamesList = [
       {
+        image: "assets/league.webp",
         name: "League Of Legends",
-        tags: ["MOBA", "Fighter"],
+        platforms: ["PC", "Mobile"],
+        tags: ["Competitive Multiplayer"],
+        rating: 5
       },
       {
+        image: "assets/csgo.jfif",
         name: "CS:GO",
-        tags: ["FPS", "Shooter"],
+        platforms: "PC",
+        tags: ["Competitive Multiplayer"],
+        rating: 4
       },
       {
+        image: "assets/roblox.jpg",
         name: "Roblox",
-        tags: ["MOBA", "Fighter"],
+        platforms: "PC",
+        tags: ["Adventure", "Action"],
+        rating: 5
       }
     ];
   }

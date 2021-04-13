@@ -1,5 +1,5 @@
 body{
-    text-align:center;
+  text-align:center;
 }
 
 #backdropDiv {
@@ -10,9 +10,11 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  text-align: center;
 }
 
-.sellingPoint{
-    width:24%;
-    margin:0;
+.sellingPoint {
+  width: 24%;
+  margin: 0;
+  text-align: center;
 }

@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\homepage"
+    "\\src\\app\\aboutus",
+    "\\src\\app\\catalog",
+    "\\src\\app\\homepage",
+    "\\src\\app\\navbar"
   ],
-  "SelectedNode": "\\src\\favicon.ico",
+  "SelectedNode": "\\src\\app\\navbar\\navbar.component.html",
   "PreviewInSolutionExplorer": false
 }

@@ -1,9 +1,18 @@
+body{
+    text-align:center;
+}
+
 #backdropDiv {
   background-image: url(/assets/oceanBG.jpg);
   background-color: #697dad;
-  height: 1000px;
+  height: 500px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.sellingPoint{
+    width:24%;
+    margin:0;
 }

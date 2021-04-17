@@ -10,3 +10,36 @@ body {
   width: 50px;
 }
 
+
+h1 {
+  text-align: center;
+}
+
+
+p {
+  text-align: center;
+}
+
+.gameDisplay {
+  background-color: rgb(243, 186, 0);
+  text-align: center;
+  border: solid black 2px;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 3px;
+}
+
+.gameImage {
+  margin-left: 25px;
+}
+
+#gamePic {
+  width: 310px;
+  height: 144px;
+}
+
+.gameDisplay:hover {
+  background-color: rgb(1, 88, 122);
+  color: white;
+}
+

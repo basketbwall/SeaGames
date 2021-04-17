@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+}
+
+div {
+    background-color: white;
+}
+
+#addGameToggle:hover {
+  background-color: cadetblue;
+  cursor: pointer;
+}
+
+#addGameForm {
+  text-align: center;
+}

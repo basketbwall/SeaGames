@@ -110,7 +110,7 @@ window.onload = function () {
       totalRating += currentGame.rating[x];
     }
     if (currentGame.rating.length > 0) {
-      gameRating.innerText = totalRating / (currentGame.rating.length) + " ( " + (currentGame.rating.length) + " )";
+      gameRating.innerText = (totalRating / (currentGame.rating.length)).toFixed(2) + " ( " + (currentGame.rating.length) + " )";
 
     } else {
       gameRating.innerText = 0 + " (No User Reviews)";
@@ -233,14 +233,49 @@ window.onload = function () {
         //loop through reviews and print them into the "Sea"
         for (var x = 0; x < gameReviews.length; x++) {
           var currentReview = gameReviews[x];
+          var currentRating = gamesArray[i].rating[x];
           //alert(gameReviews[x]);
           var review = document.createElement("p");
           review.classList.add("review");
-          review.innerText = currentReview;
+          review.innerText = currentReview + " [Rating given: " + currentRating + "]";
           reviewsContainer.append(review);
         }
       }
     }
 
   }
+
+  //code to load the existing games into select so user can add a review to existing game
+  for (var i = 0; i < gamesArray.length; i++) {
+    var game = gamesArray[i];
+    var option = document.createElement("option");
+    option.text = game.title;
+    option.value = game.title;
+    var select = document.getElementById("catalogGames");
+    select.append(option);
+  }
+
+  //attach event handler to review submit button
+  var addReview = document.getElementById("addReviewBtn");
+  addReview.addEventListener("click", putReview);
+
+  function putReview() {
+    var title = document.getElementById("catalogGames").value;
+    var review = document.getElementById("adding_review").value;
+    var rating = document.getElementById("adding_rating").value;
+    alert(title + ", " + review + ", " + rating);
+    //find title in games array and add to the rating and reviews arrays for it
+    for (var i = 0; i < gamesArray.length; i++) {
+      var game = gamesArray[i];
+      if (game.title == title) {
+        alert("found amatch");
+        //found our game
+        game.reviews.push(review);
+        game.rating.push(parseInt(rating));
+        //write the changes to the localstorage
+        localStorage.setItem("games", JSON.stringify(gamesArray));
+      }
+    }
+  }
+
 }

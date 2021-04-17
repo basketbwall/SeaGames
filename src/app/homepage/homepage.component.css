@@ -1,0 +1,44 @@
+*{
+  text-align: center;
+}
+
+#backdropDiv {
+  background-image: url(/assets/oceanBG.jpg);
+  background-color: #697dad;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  margin: 0;
+  border-width: 5px;
+  border-color: darkblue;
+  border-style: solid;
+}
+
+.sellingPoint {
+  width: 25%;
+  margin: 0;
+  padding: 0;
+  float: left;
+  text-align: center;
+}
+
+#titleDiv{
+    position:relative;
+    top:50px;
+    color: white;
+    vertical-align:middle;
+    height:50%;
+}
+
+#titleName{
+    font-size:100px;
+    margin:0;
+}
+
+#subtitle{
+    font-size: 50px;
+    margin:0;
+}

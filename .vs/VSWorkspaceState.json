@@ -3,8 +3,11 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\aboutus"
+    "\\src\\app\\aboutus",
+    "\\src\\app\\catalog",
+    "\\src\\app\\homepage",
+    "\\src\\app\\navbar"
   ],
-  "SelectedNode": "\\src\\app\\aboutus\\aboutus.component.html",
+  "SelectedNode": "\\src\\app\\navbar\\navbar.component.html",
   "PreviewInSolutionExplorer": false
 }

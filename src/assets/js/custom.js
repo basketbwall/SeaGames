@@ -52,7 +52,7 @@ window.onload = function () {
 
 
   var gamesArray = new Array();
-  var game1 = new Game("https://www.pcinvasion.com/wp-content/uploads/2020/05/Sega-confirms-existence-of-new-Sonic-game-reveal-delayed-1.jpg", "Sonic", "Sonic gamez", [1], 5.00, "FPS", "PC", ["Worst Game Ever"]);
+  var game1 = new Game("https://www.pcinvasion.com/wp-content/uploads/2020/05/Sega-confirms-existence-of-new-Sonic-game-reveal-delayed-1.jpg", "Sonic", "Sonic gamez", [1, 5], 5.00, "FPS", "PC", ["Worst Game Ever", "Really good dude"]);
   var game2 = new Game("assets/league.webp", "League of Legends", "league is fun", [5], 0, ["MOBA", "FPS"], ["PC", "MAC"], ["Best Game Ever"]);
 
   gamesArray.push(game1);
@@ -66,12 +66,13 @@ window.onload = function () {
 
   }
   var reviewsDiv = document.getElementById("reviewsHere");
-
+  //prints reviews
   for (var i = 0; i < gamesArray.length; i++) {
     var currentGameReviews = gamesArray[i].reviews; //go into each game, grab their list of reviews
     for (var x = 0; x < currentGameReviews.length; x++) { //loop through that list for each one
       var currentReview = currentGameReviews[x];
       var newP = document.createElement("p");
+      newP.classList.add("review");
       newP.innerHTML = currentReview;
       reviewsDiv.append(newP);
     }
@@ -205,6 +206,41 @@ window.onload = function () {
     localStorage.setItem("games", JSON.stringify(gamesArray));
   }
 
+  //code to allow users to click a game and show only those relevant reviews
+  var gameDivs = document.getElementsByClassName("gameDisplay");
+  for (var i = 0; i < gameDivs.length; i++) {
+    var currentGame = gameDivs[i];
+    currentGame.addEventListener("click", showReview);
+  }
+  function showReview() {
+    //alert("clicked the div for " + this.firstChild.innerText);
+    var gameTitle = this.firstChild.innerText;
+    var reviewDivTitle = document.getElementById("currentTitleViewed");
+    reviewDivTitle.innerText = "Thoughts on " + gameTitle;
+    var reviews = document.getElementsByClassName("review");
+    var reviewsContainer = document.getElementById("reviewsHere");
+    for (var i = 0; i < reviews.length;) {
+      reviewsContainer.removeChild(reviews[i]); //removes all current comments which is good
+    }
 
+    //find all actual relevant reviews from the game array
+    for (var i = 0; i < gamesArray.length; i++) {
+      //find the game with the equivalent title
+      if (gamesArray[i].title == gameTitle) {
+        //alert("found a game with the title");
+        //we found our game and we have the reviews for this game
+        var gameReviews = gamesArray[i].reviews;
+        //loop through reviews and print them into the "Sea"
+        for (var x = 0; x < gameReviews.length; x++) {
+          var currentReview = gameReviews[x];
+          //alert(gameReviews[x]);
+          var review = document.createElement("p");
+          review.classList.add("review");
+          review.innerText = currentReview;
+          reviewsContainer.append(review);
+        }
+      }
+    }
 
+  }
 }

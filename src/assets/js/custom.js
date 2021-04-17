@@ -1,5 +1,5 @@
 class Game {
-  constructor(image, title, description, rating, price, tags, devices, reviews) {
+  constructor(image, title, description, rating, price, tags, devices, reviews, year) {
     this.image = image;
     this.title = title;
     this.description = description;
@@ -12,6 +12,10 @@ class Game {
     this.tags = tags;
     this.devices = devices;
     this.reviews = reviews;
+    this.year = year;
+  }
+  getYear() {
+    return this.year;
   }
 
   getImage() {
@@ -52,8 +56,8 @@ window.onload = function () {
 
 
   var gamesArray = new Array();
-  var game1 = new Game("https://www.pcinvasion.com/wp-content/uploads/2020/05/Sega-confirms-existence-of-new-Sonic-game-reveal-delayed-1.jpg", "Sonic", "Sonic gamez", [1, 5], 5.00, "FPS", "PC", ["Worst Game Ever", "Really good dude"]);
-  var game2 = new Game("assets/league.webp", "League of Legends", "league is fun", [5], 0, ["MOBA", "FPS"], ["PC", "MAC"], ["Best Game Ever"]);
+  var game1 = new Game("https://www.pcinvasion.com/wp-content/uploads/2020/05/Sega-confirms-existence-of-new-Sonic-game-reveal-delayed-1.jpg", "Sonic", "Sonic gamez", [1, 5], 5.00, "FPS", "PC", ["Worst Game Ever", "Really good dude"], "2020");
+  var game2 = new Game("assets/league.webp", "League of Legends", "league is fun", [5], 0, ["MOBA", "FPS"], ["PC", "MAC"], ["Best Game Ever"], "2021");
 
   gamesArray.push(game1);
   gamesArray.push(game2);
@@ -89,6 +93,10 @@ window.onload = function () {
     gamePicture.setAttribute("id", "gamePic")
     gamePicture.src = currentGame.image;
     gameDiv.append(gamePicture);
+
+    var gameYear = document.createElement("p");
+    gameYear.innerText = currentGame.year;
+    gameDiv.append(gameYear);
 
     var gameDescription = document.createElement("p");
     gameDescription.innerText = currentGame.description;
@@ -160,6 +168,7 @@ window.onload = function () {
   function addGame() {
     var gameTitle = document.getElementById("game_title").value;
     var gameImage = document.getElementById("game_src").value;
+    var gameYear = document.getElementById("game_year").value;
     var gameDevices = new Array();
     if (document.getElementById("device1").checked) {
       gameDevices.push("PC");
@@ -201,7 +210,7 @@ window.onload = function () {
     //looop time
     var gameRating = [parseInt(document.getElementById("game_rating").value)];
     var gameReview = [document.getElementById("game_review").value]
-    gamesArray.push(new Game(gameImage, gameTitle, gameDescription, gameRating, gamePrice, gameTags, gameDevices, gameReview));
+    gamesArray.push(new Game(gameImage, gameTitle, gameDescription, gameRating, gamePrice, gameTags, gameDevices, gameReview, gameYear));
 
     localStorage.setItem("games", JSON.stringify(gamesArray));
   }
@@ -274,6 +283,100 @@ window.onload = function () {
         game.rating.push(parseInt(rating));
         //write the changes to the localstorage
         localStorage.setItem("games", JSON.stringify(gamesArray));
+      }
+    }
+  }
+
+  var searchBtn = document.getElementById("searchButton");
+  searchBtn.addEventListener("click", redraw);
+
+  function redraw() {
+    gamesArray = JSON.parse(localStorage.getItem("games"));
+    var searchQuery = document.getElementById("searchString").value.toLowerCase();
+    alert("searching for.." + searchQuery);
+    //clear the gamedisplays
+    var gameDisplays = document.getElementsByClassName("gameDisplay");
+    var displayContainer = document.getElementById("catalog");
+    for (var x = 0; x < gameDisplays.length;) {
+      displayContainer.removeChild(gameDisplays[x]);
+    }
+    //loop through every game
+    var drawArray = new Array(); // we put any hits in here and do a final loop to display these things :D
+
+    for (var y = 0; y < gamesArray.length; y++) {
+      //check for any hits in the title, year, and list of tags
+      var game = gamesArray[y];
+
+      //loop through tha tags and concatenate them into a stirng
+      var tags = "";
+      for (var z = 0; z < game.tags.length; z++) {
+        tags += game.tags[z];
+      }
+
+      if (game.title.toLowerCase().includes(searchQuery)) {
+        drawArray.push(game);
+      } else if (game.year.toLowerCase().includes(searchQuery)) {
+        drawArray.push(game)
+      } else if (tags.toLowerCase().includes(searchQuery)) {
+        drawArray.push(game);
+      }
+    }
+
+    if (searchQuery == "") {
+      drawArray = gamesArray;
+    }
+    //we have the draw array. now let's draw
+    for (var i = 0; i < drawArray.length; i++) {
+      alert("adding " + i);
+      var currentGame = drawArray[i];
+      var gameDiv = document.createElement("div");
+      gameDiv.classList.add("gameDisplay");
+      var gameTitle = document.createElement("h1");
+      gameDiv.append(gameTitle);
+      gameTitle.innerText = currentGame.title;
+      var gamePicture = document.createElement("img");
+      gamePicture.setAttribute("id", "gamePic")
+      gamePicture.src = currentGame.image;
+      gameDiv.append(gamePicture);
+
+      var gameYear = document.createElement("p");
+      gameYear.innerText = currentGame.year;
+      gameDiv.append(gameYear);
+
+      var gameDescription = document.createElement("p");
+      gameDescription.innerText = currentGame.description;
+      gameDiv.append(gameDescription);
+
+      var gameTags = document.createElement("p");
+      gameTags.innerText = currentGame.tags;
+      gameDiv.append(gameTags);
+
+      var gameDevices = document.createElement("p");
+      gameDevices.innerText = currentGame.devices;
+      gameDiv.append(gameDevices);
+
+      var gameRating = document.createElement("p");
+      gameRating.classList.add("rating");
+      //get rating by.. looping through rating array
+      var totalRating = 0;
+      for (var x = 0; x < currentGame.rating.length; x++) {
+        totalRating += currentGame.rating[x];
+      }
+      if (currentGame.rating.length > 0) {
+        gameRating.innerText = (totalRating / (currentGame.rating.length)).toFixed(2) + " ( " + (currentGame.rating.length) + " )";
+
+      } else {
+        gameRating.innerText = 0 + " (No User Reviews)";
+
+      }
+      gameDiv.append(gameRating);
+
+      var catalog = document.getElementById("catalog");
+      catalog.append(gameDiv);
+      var gameDivs = document.getElementsByClassName("gameDisplay");
+      for (var p = 0; p < gameDivs.length; p++) {
+        var currentGame = gameDivs[p];
+        currentGame.addEventListener("click", showReview);
       }
     }
   }

@@ -20,6 +20,17 @@ p {
   text-align: center;
 }
 
+
+#searchBox {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+#addReview {
+    text-align: center;
+}
+
 .gameDisplay {
   background-color: rgb(243, 186, 0);
   text-align: center;

@@ -10,6 +10,7 @@ import { QuizComponent } from './quiz/quiz.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { GamereviewsComponent } from './gamereviews/gamereviews.component';
 import { AddGameComponent } from './add-game/add-game.component';
+import { AddReviewComponent } from './add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AddGameComponent } from './add-game/add-game.component';
     QuizComponent,
     HomepageComponent,
     GamereviewsComponent,
-    AddGameComponent
+    AddGameComponent,
+    AddReviewComponent
   ],
   imports: [
     BrowserModule,

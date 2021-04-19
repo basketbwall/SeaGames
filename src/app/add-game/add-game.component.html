@@ -5,19 +5,19 @@
 
 <div  id="addGameForm">
   <form>
-    <label for="title">Title: </label>
+    <label for="title">*Title: </label>
     <input type="text" id="game_title" name="title" />
     <br />
 
-    <label for="year">Year: </label>
+    <label for="year">*Year: </label>
     <input type="text" id="game_year" name="year" />
     <br />
 
-    <label for="image">Image Src: </label>
+    <label for="image">*Image Src: </label>
     <input type="text" id="game_src" name="image" />
     <br />
 
-    Devices:
+    *Devices:
     <label for="device1">PC</label>
     <input type="checkbox" id="device1" name="device1" value="PC" />
     <label for="device2">Mobile</label>
@@ -30,7 +30,7 @@
     <input type="checkbox" id="device5" name="device5" value="Playstation" />
     <br />
 
-    Tags:
+    *Tags:
     <label for="tag1">Co-op</label>
     <input type="checkbox" id="tag1" value="Co-op" />
     <label for="tag2">Competitive Multiplayer</label>
@@ -56,11 +56,11 @@
     <br />
 
 
-    <label for="price">Price: </label>
+    <label for="price">*Price: </label>
     <input type="text" id="game_price" name="price" />
     <br />
 
-    <label for="description">Description: </label>
+    <label for="description">*Description: </label>
     <input type="text" id="game_description" name="description" />
     <br />
 
@@ -72,7 +72,9 @@
     <br />
 
     <input id="addGameButton" type="submit" value="Submit">
+    <br/>
 
+    <label>Please fill in all required (*) fields to submit a game.</label>
 
   </form>
 

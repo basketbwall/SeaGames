@@ -50,6 +50,16 @@ class Game {
     return this.reviews.length;
   }
 }
+class Points {
+  constructor(index, points) {
+    this.index = index;
+    this.points = points;
+  }
+
+  toString() {
+    return "Game Index: " + this.index + " / Points: " + this.points;
+  }
+}
 
 window.onload = function () {
   //initialize games array
@@ -418,18 +428,33 @@ window.onload = function () {
         costs.push($(this).val());
       }
     });
-    alert(numPlayers);
-    alert(tags.toString());
-    alert(devices.toString());
-    alert(costs.toString());
     var gamePoints = [];
     for (let i = 0; i < gamesArray.length; i++) {
-      gamePoints[i] = 0;
+      gamePoints[i] = new Points(i,0);
+      if (gamesArray[i].tags.includes(numPlayers)) {
+        gamePoints[i].points += 3;
+      }
+      for (let j = 0; j < tags.length; j++) {
+        if (gamesArray[i].tags.includes(tags[j])) {
+          gamePoints[i].points += 4;
+        }
+      }
+      for (let j = 0; j < devices.length; j++) {
+        if (gamesArray[i].devices.includes(devices[j])) {
+          gamePoints[i].points += 4;
+        }
+      }
+      if (costs.includes("cheap") && gamesArray[i].price < 20) {
+        gamePoints[i].points += 3;
+      }
+      if (costs.includes("moderate") && gamesArray[i].price > 19 && gamesArray[i].price < 40) {
+        gamePoints[i].points += 3;
+      }
+      if (costs.includes("expensive") && gamesArray[i].price > 39) {
+        gamePoints[i].points += 3;
+      }
     }
-    alert(gamePoints.toString());
+    gamePoints.sort(function (a, b) { return b.points - a.points });
   });
 
-}
-
-  
 }

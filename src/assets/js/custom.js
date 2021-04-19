@@ -234,7 +234,6 @@ window.onload = function () {
     currentGame.addEventListener("click", showReview);
   }
   function showReview() {
-    //alert("clicked the div for " + this.firstChild.innerText);
     var gameTitle = this.firstChild.innerText;
     var reviewDivTitle = document.getElementById("currentTitleViewed");
     reviewDivTitle.innerText = "Thoughts on " + gameTitle;
@@ -248,14 +247,12 @@ window.onload = function () {
     for (var i = 0; i < gamesArray.length; i++) {
       //find the game with the equivalent title
       if (gamesArray[i].title == gameTitle) {
-        //alert("found a game with the title");
         //we found our game and we have the reviews for this game
         var gameReviews = gamesArray[i].reviews;
         //loop through reviews and print them into the "Sea"
         for (var x = 0; x < gameReviews.length; x++) {
           var currentReview = gameReviews[x];
           var currentRating = gamesArray[i].rating[x];
-          //alert(gameReviews[x]);
           var review = document.createElement("p");
           review.classList.add("review");
           review.innerText = currentReview + " [Rating given: " + currentRating + "]";
@@ -291,12 +288,10 @@ window.onload = function () {
     if (review == "" || rating == "") {
       alert("Please fill in the required fields.");
     } else {
-      alert(title + ", " + review + ", " + rating);
       //find title in games array and add to the rating and reviews arrays for it
       for (var i = 0; i < gamesArray.length; i++) {
         var game = gamesArray[i];
         if (game.title == title) {
-          alert("found amatch");
           //found our game
           game.reviews.push(review);
           game.rating.push(parseInt(rating));
@@ -315,7 +310,7 @@ window.onload = function () {
   function redraw() {
     gamesArray = JSON.parse(localStorage.getItem("games"));
     var searchQuery = document.getElementById("searchString").value.toLowerCase();
-    alert("searching for.." + searchQuery);
+    alert("Searching for: " + searchQuery);
     //clear the gamedisplays
     var gameDisplays = document.getElementsByClassName("gameDisplay");
     var displayContainer = document.getElementById("catalog");
@@ -349,7 +344,6 @@ window.onload = function () {
     }
     //we have the draw array. now let's draw
     for (var i = 0; i < drawArray.length; i++) {
-      alert("adding " + i);
       var currentGame = drawArray[i];
       var gameDiv = document.createElement("div");
       gameDiv.classList.add("gameDisplay");

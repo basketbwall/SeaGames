@@ -50,6 +50,16 @@ class Game {
     return this.reviews.length;
   }
 }
+class Points {
+  constructor(index, points) {
+    this.index = index;
+    this.points = points;
+  }
+
+  toString() {
+    return "Game Index: " + this.index + " / Points: " + this.points;
+  }
+}
 
 window.onload = function () {
   //initialize games array
@@ -397,18 +407,102 @@ window.onload = function () {
     }
   }
 
+
   $("#submitButton").click(function () {
-    var checked = [];
-    $("input").each(function () {
+    var numPlayers = $("[name=playerNum]:checked").val();
+    var tags = [];
+    var devices = [];
+    var costs = [];
+    $("[name=tags]").each(function () {
       if ($(this).prop("checked")) {
-        checked.push($(this).val());
+        tags.push($(this).val());
+      }
+    });
+    $("[name=device]").each(function () {
+      if ($(this).prop("checked")) {
+        devices.push($(this).val());
+      }
+    });
+    $("[name=cost]").each(function () {
+      if ($(this).prop("checked")) {
+        costs.push($(this).val());
       }
     });
     var gamePoints = [];
     for (let i = 0; i < gamesArray.length; i++) {
-      gamePoints[i] = 0;
+      gamePoints[i] = new Points(i,0);
+      if (gamesArray[i].tags.includes(numPlayers)) {
+        gamePoints[i].points += 3;
+      }
+      for (let j = 0; j < tags.length; j++) {
+        if (gamesArray[i].tags.includes(tags[j])) {
+          gamePoints[i].points += 4;
+        }
+      }
+      for (let j = 0; j < devices.length; j++) {
+        if (gamesArray[i].devices.includes(devices[j])) {
+          gamePoints[i].points += 4;
+        }
+      }
+      if (costs.includes("cheap") && gamesArray[i].price < 20) {
+        gamePoints[i].points += 3;
+      }
+      if (costs.includes("moderate") && gamesArray[i].price > 19 && gamesArray[i].price < 40) {
+        gamePoints[i].points += 3;
+      }
+      if (costs.includes("expensive") && gamesArray[i].price > 39) {
+        gamePoints[i].points += 3;
+      }
     }
-    alert(gamePoints.toString());
+    gamePoints.sort(function (a, b) { return b.points - a.points });
+    $("#gamesGoHere").append("<h1>Here are some games you might like!</h1>");
+    for (let i = 0; i < 3; i++) {
+      var gameHere = gamesArray[gamePoints[i].index];
+      var gameDiv = document.createElement("div");
+      gameDiv.classList.add("gameQuizDisplay");
+      var gameTitle = document.createElement("h1");
+      gameDiv.append(gameTitle);
+      gameTitle.innerText = gameHere.title;
+      var gamePicture = document.createElement("img");
+      gamePicture.setAttribute("id", "gamePic")
+      gamePicture.src = gameHere.image;
+      gameDiv.append(gamePicture);
+
+      var gameYear = document.createElement("p");
+      gameYear.innerText = gameHere.year;
+      gameDiv.append(gameYear);
+
+      var gameDescription = document.createElement("p");
+      gameDescription.innerText = gameHere.description;
+      gameDiv.append(gameDescription);
+
+      var gameTags = document.createElement("p");
+      gameTags.innerText = gameHere.tags;
+      gameDiv.append(gameTags);
+
+      var gameDevices = document.createElement("p");
+      gameDevices.innerText = gameHere.devices;
+      gameDiv.append(gameDevices);
+
+      var gameRating = document.createElement("p");
+      gameRating.classList.add("rating");
+      //get rating by.. looping through rating array
+      var totalRating = 0;
+      for (var x = 0; x < gameHere.rating.length; x++) {
+        totalRating += gameHere.rating[x];
+      }
+      if (gameHere.rating.length > 0) {
+        gameRating.innerText = (totalRating / (gameHere.rating.length)).toFixed(2) + " ( " + (gameHere.rating.length) + " )";
+
+      } else {
+        gameRating.innerText = 0 + " (No User Reviews)";
+
+      }
+      gameDiv.append(gameRating);
+
+      var catalog = document.getElementById("gamesGoHere");
+      catalog.append(gameDiv);
+    }
   });
-  
+
 }

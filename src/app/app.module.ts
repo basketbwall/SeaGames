@@ -11,6 +11,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { GamereviewsComponent } from './gamereviews/gamereviews.component';
 import { AddGameComponent } from './add-game/add-game.component';
 import { AddReviewComponent } from './add-review/add-review.component';
+import { SellingpointsComponent } from './sellingpoints/sellingpoints.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddReviewComponent } from './add-review/add-review.component';
     HomepageComponent,
     GamereviewsComponent,
     AddGameComponent,
-    AddReviewComponent
+    AddReviewComponent,
+    SellingpointsComponent
   ],
   imports: [
     BrowserModule,

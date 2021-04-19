@@ -1,6 +1,7 @@
 #Logo {
-    width: 100px;
-    margin:0;
+  width: 100px;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  z-index: 5;
 }
-
-

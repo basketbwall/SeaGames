@@ -17,6 +17,19 @@
   border-style: solid;
 }
 
+#btnCatalog:hover{
+  color: black;
+  font-size: 45px;
+  list-style: none;
+  text-decoration: none;
+}
+
+#btnCatalog {
+  color: white;
+  font-size: 45px;
+  list-style: none;
+  text-decoration: none;
+}
 .sellingPoint {
   width: 25%;
   margin: 0;

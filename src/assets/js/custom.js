@@ -398,29 +398,12 @@ window.onload = function () {
   }
 
   $("#submitButton").click(function () {
-    var numPlayers = $("[name=playerNum]:checked").val();
-    var tags = [];
-    var devices = [];
-    var costs = [];
-    $("[name=tags]").each(function () {
+    var checked = [];
+    $("input").each(function () {
       if ($(this).prop("checked")) {
-        tags.push($(this).val());
+        checked.push($(this).val());
       }
     });
-    $("[name=device]").each(function () {
-      if ($(this).prop("checked")) {
-        devices.push($(this).val());
-      }
-    });
-    $("[name=cost]").each(function () {
-      if ($(this).prop("checked")) {
-        costs.push($(this).val());
-      }
-    });
-    alert(numPlayers);
-    alert(tags.toString());
-    alert(devices.toString());
-    alert(costs.toString());
     var gamePoints = [];
     for (let i = 0; i < gamesArray.length; i++) {
       gamePoints[i] = 0;

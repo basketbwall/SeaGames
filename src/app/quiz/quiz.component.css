@@ -23,8 +23,7 @@
   width: 40%;
 }
 
-#submit {
+#submitButton {
+  margin: auto;
   text-align: center;
-  width: 20%;
-  margin:auto;
 }

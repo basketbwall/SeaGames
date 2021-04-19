@@ -455,6 +455,54 @@ window.onload = function () {
       }
     }
     gamePoints.sort(function (a, b) { return b.points - a.points });
+    $("#gamesGoHere").append("<h1>Here are some games you might like!</h1>");
+    for (let i = 0; i < 3; i++) {
+      var gameHere = gamesArray[gamePoints[i].index];
+      var gameDiv = document.createElement("div");
+      gameDiv.classList.add("gameQuizDisplay");
+      var gameTitle = document.createElement("h1");
+      gameDiv.append(gameTitle);
+      gameTitle.innerText = gameHere.title;
+      var gamePicture = document.createElement("img");
+      gamePicture.setAttribute("id", "gamePic")
+      gamePicture.src = gameHere.image;
+      gameDiv.append(gamePicture);
+
+      var gameYear = document.createElement("p");
+      gameYear.innerText = gameHere.year;
+      gameDiv.append(gameYear);
+
+      var gameDescription = document.createElement("p");
+      gameDescription.innerText = gameHere.description;
+      gameDiv.append(gameDescription);
+
+      var gameTags = document.createElement("p");
+      gameTags.innerText = gameHere.tags;
+      gameDiv.append(gameTags);
+
+      var gameDevices = document.createElement("p");
+      gameDevices.innerText = gameHere.devices;
+      gameDiv.append(gameDevices);
+
+      var gameRating = document.createElement("p");
+      gameRating.classList.add("rating");
+      //get rating by.. looping through rating array
+      var totalRating = 0;
+      for (var x = 0; x < gameHere.rating.length; x++) {
+        totalRating += gameHere.rating[x];
+      }
+      if (gameHere.rating.length > 0) {
+        gameRating.innerText = (totalRating / (gameHere.rating.length)).toFixed(2) + " ( " + (gameHere.rating.length) + " )";
+
+      } else {
+        gameRating.innerText = 0 + " (No User Reviews)";
+
+      }
+      gameDiv.append(gameRating);
+
+      var catalog = document.getElementById("gamesGoHere");
+      catalog.append(gameDiv);
+    }
   });
 
 }

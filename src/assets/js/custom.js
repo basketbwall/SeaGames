@@ -396,14 +396,17 @@ window.onload = function () {
   }
 
   $("#submitButton").click(function () {
-    alert($("[name=playerNum]:checked").val());
     var checked = [];
-    $("[type=checkbox]").each(function () {
+    $("input").each(function () {
       if ($(this).prop("checked")) {
         checked.push($(this).val());
       }
     });
-    alert(checked.toString());
+    var gamePoints = [];
+    for (let i = 0; i < gamesArray.length; i++) {
+      gamePoints[i] = 0;
+    }
+    alert(gamePoints.toString());
   });
   
 }

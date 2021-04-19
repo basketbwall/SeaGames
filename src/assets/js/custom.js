@@ -66,11 +66,21 @@ window.onload = function () {
 
 
   var gamesArray = new Array();
-  var game1 = new Game("https://www.pcinvasion.com/wp-content/uploads/2020/05/Sega-confirms-existence-of-new-Sonic-game-reveal-delayed-1.jpg", "Sonic", "Sonic gamez", [1, 5], 5.00, ["Singleplayer","Action","Sports","Adventure"], ["PC","Switch"], ["Worst Game Ever", "Really good dude"], "2020");
   var game2 = new Game("assets/league.webp", "League of Legends", "league is fun", [5], 0, ["Competitive Multiplayer", "Action","Puzzle/Strategy"], ["PC"], ["Best Game Ever"], "2021");
+  var game3 = new Game("assets/zelda.png", "The Legend of Zelda: Skyward Sword HD", "Take to the skies, draw your sword, and experience the earliest story in the Legend of Zelda™ series. Join Link in his high-flying quest to save Zelda, a childhood friend who must confront her destiny. Soar between floating islands and descend to the treacherous surface world in this updated HD version of the Legend of Zelda: Skyward Sword game on Nintendo Switch.", [4], 59.99, ["Singleplayer"], ["Switch"], ["You can still use joy cons with the switch lite, they can pair just like with the switch, but rather then connecting them you push the black button next to zl zr "], "2021")
+  var game4 = new Game("assets/unleashed.jpg", "Sonic Unleashed", "bruh", [4], 14.99, ["Singleplayer"], ["Xbox"], ["Need more sonic in my life man"], "2008");
+  var game5 = new Game("assets/heroes.jpg", "Sonic Heroes", "This game differs from other Sonic games by allowing the player to take control of one of four teams, each with three characters, who each have unique abilities to use. ", [5], 14.99, ["Singleplayer"], ["Xbox", "Playstation"], ["I am a hero now"], "2003");
+  var game6 = new Game("assets/fusionfall.jpg", "FusionFall", "Cartoon Network Universe: FusionFall was a massively multiplayer online game developed by Cartoon Network and South Korean studio Grigon Entertainment. FusionFall used the Unity engine as its client technology basis.", [5], 0, ["Multiplayer"], ["PC"], ["The literal best thing to ever happen regarding CN. Something like a marvel cinematic universe but with every CN story i've grown up with. The friends i made while playing this game over a decade ago i still talk to, get advice from and are some of my best friends. The bonds made in FusionFall made me a better person looking back on it and shaped alot of who i am today."], "2009");
+  var game7 = new Game("assets/cntko.jpg", "Cartoon Network TKO", "Titanic KungFu-Bot Offense is a Cartoon Network robot fighting game that is similar to Project Exonaut.", [4], 0, ["Multiplayer"], ["PC"], ["Everyone I used here was my main but I liked and played the most since I liked his show, moveset, he was one of the first characters, and I (suppose in today's terms) really liked his 5X(his heavy punch) :^)"], "2011");
 
-  gamesArray.push(game1);
+
+  gamesArray.push(game5);
   gamesArray.push(game2);
+  gamesArray.push(game3);
+  gamesArray.push(game4);
+  gamesArray.push(game6);
+  gamesArray.push(game7);
+
 
 
   if (JSON.parse(localStorage.getItem("games")) != null && JSON.parse(localStorage.getItem("games")).length > 0) {
@@ -184,8 +194,17 @@ window.onload = function () {
 
   function addGame() {
     var gameTitle = document.getElementById("game_title").value;
-    var gameImage = document.getElementById("game_src").value;
     var gameYear = document.getElementById("game_year").value;
+
+    //check existing array if game already exists
+    for (let i = 0; i < gamesArray.length; i++) {
+      if ((gamesArray[i].title.toLowerCase() + gamesArray[i].year) == (gameTitle.toLowerCase() + gameYear)) {
+        alert("Game already exists, submit a review instead");
+        return;
+      }
+    }
+    
+    var gameImage = document.getElementById("game_src").value;
     var gameDevices = new Array();
     if (document.getElementById("device1").checked) {
       gameDevices.push("PC");
@@ -320,7 +339,7 @@ window.onload = function () {
   function redraw() {
     gamesArray = JSON.parse(localStorage.getItem("games"));
     var searchQuery = document.getElementById("searchString").value.toLowerCase();
-    alert("Searching for: " + searchQuery);
+    //alert("Searching for: " + searchQuery);
     //clear the gamedisplays
     var gameDisplays = document.getElementsByClassName("gameDisplay");
     var displayContainer = document.getElementById("catalog");

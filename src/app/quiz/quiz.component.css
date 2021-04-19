@@ -1,0 +1,29 @@
+#questionTime {
+  width: 50%;
+  background-color: #e29a45;
+  border: 2.5px solid #29558a;
+  margin: auto;
+}
+
+.questionNum {
+  text-align: center;
+  font-size: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.question {
+  font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.inputs {
+  margin: auto;
+  width: 40%;
+}
+
+#submitButton {
+  margin: auto;
+  text-align: center;
+}

@@ -78,7 +78,9 @@ window.onload = function () {
       var newP = document.createElement("p");
       newP.classList.add("review");
       newP.innerHTML = currentReview;
-      reviewsDiv.append(newP);
+      if (reviewsDiv != null) {
+        reviewsDiv.append(newP);
+      }
     }
   }
   //create the thing using javascript not component-way
@@ -127,19 +129,23 @@ window.onload = function () {
     gameDiv.append(gameRating);
 
     var catalog = document.getElementById("catalog");
-    catalog.append(gameDiv);
+    if (catalog != null) {
+      catalog.append(gameDiv);
+    }
   }
 
   //toggle add game form here
   var toggleButton = document.getElementById("addGameToggle");
-  toggleButton.onclick = function () {
-    var form = document.getElementById("addGameForm");
-    if (form.style.display === "none") {
-      form.style.display = "block";
-    } else {
-      form.style.display = "none";
-    }
-  };
+  if (toggleButton != null) {
+    toggleButton.onclick = function () {
+      var form = document.getElementById("addGameForm");
+      if (form.style.display === "none") {
+        form.style.display = "block";
+      } else {
+        form.style.display = "none";
+      }
+    };
+  }
 
   /*
   var ratingsArray = document.getElementsByClassName("rating"); //get all the ratings that are in num form
@@ -163,7 +169,9 @@ window.onload = function () {
   }*/
   
   var addButton = document.getElementById("addGameButton");
-  addButton.addEventListener("click", addGame);
+  if (addButton != null) {
+    addButton.addEventListener("click", addGame);
+  }
 
   function addGame() {
     var gameTitle = document.getElementById("game_title").value;
@@ -261,12 +269,16 @@ window.onload = function () {
     option.text = game.title;
     option.value = game.title;
     var select = document.getElementById("catalogGames");
-    select.append(option);
+    if (select != null) {
+      select.append(option);
+    }
   }
 
   //attach event handler to review submit button
   var addReview = document.getElementById("addReviewBtn");
-  addReview.addEventListener("click", putReview);
+  if (addReview != null) {
+    addReview.addEventListener("click", putReview);
+  }
 
   function putReview() {
     var title = document.getElementById("catalogGames").value;
@@ -288,7 +300,9 @@ window.onload = function () {
   }
 
   var searchBtn = document.getElementById("searchButton");
-  searchBtn.addEventListener("click", redraw);
+  if (searchBtn != null) {
+    searchBtn.addEventListener("click", redraw);
+  }
 
   function redraw() {
     gamesArray = JSON.parse(localStorage.getItem("games"));
@@ -381,4 +395,18 @@ window.onload = function () {
     }
   }
 
+  $("#submitButton").click(function () {
+    var checked = [];
+    $("input").each(function () {
+      if ($(this).prop("checked")) {
+        checked.push($(this).val());
+      }
+    });
+    var gamePoints = [];
+    for (let i = 0; i < gamesArray.length; i++) {
+      gamePoints[i] = 0;
+    }
+    alert(gamePoints.toString());
+  });
+  
 }

@@ -3,8 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\aboutus"
+    "\\src\\assets",
+    "\\src\\assets\\js"
   ],
-  "SelectedNode": "\\src\\app\\aboutus\\aboutus.component.html",
+  "SelectedNode": "\\src\\app\\gamereviews",
   "PreviewInSolutionExplorer": false
 }
